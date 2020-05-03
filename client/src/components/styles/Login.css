@@ -70,7 +70,8 @@
   transition: all 0.2s ease-in-out;
 }
 .login form button:hover {
-  color: white;
+  color: yellow;
+  cursor: pointer;
   background-color: #58adfb;
 }
 @media only screen and (max-width: 600px) {

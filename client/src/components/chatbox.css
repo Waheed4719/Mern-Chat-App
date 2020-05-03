@@ -238,7 +238,7 @@ h1{
     background-color: #E84141;
 }
 .logout:hover{
-    color: black;
+    color: yellow;
 }
 
 
@@ -262,7 +262,7 @@ h1{
     margin: auto;
     font-family: Circular Std Black;
     letter-spacing: 1px;
-    
+    font-size: 18px;
     line-height: 40px;
     width: 175px;
     border: none;
@@ -270,5 +270,5 @@ h1{
     background-color: dodgerblue;
 }
 .joinRoom:hover{
-    color: darkslateblue;
+    color: yellow;
 }
