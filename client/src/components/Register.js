@@ -142,7 +142,7 @@ function submitForm(e){
                    <p className="password-error"></p>
                </div>
                <small><Link to="/">Already have an account?</Link></small>
-               <button href="#" className="signin-button" onClick={(e)=>submitForm(e)} >Sign in</button>
+               <button style={{boxShadow: "0px 2px 6px #757B84",fontFamily:"pocket_monkregular",letterSpacing:"2px",fontSize:"18px",backgroundColor:"#E84141",width:"175px",lineHeight:"40px",height:"40px",borderRadius:'8px'}} href="#" className="signin-button" onClick={(e)=>submitForm(e)} >Sign in</button>
                
            </form>
           
