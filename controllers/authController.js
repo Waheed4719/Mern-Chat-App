@@ -1,7 +1,7 @@
 const User = require('./../models/User'),
 loginValidator = require('./../validators/loginValidator'),
 registerValidator = require('./../validators/registerValidator');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 module.exports={
      
