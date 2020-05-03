@@ -125,7 +125,7 @@ h1{
     align-items: center ;
     justify-content: flex-end ;
     font-size: 11px;
-    
+    margin-right: 10px;
     
 }
 .leftAlign p,.rightAlign p{

@@ -7,8 +7,8 @@ const db = require('./config/keys').mongoURI;
 const port = process.env.PORT || 5000;
 const http = require('http');
 const server = http.createServer(app);
-const path = require('path'),
-auth = require('./routes/auth'),
+const path = require('path');
+const auth = require('./routes/auth');
 
 
 global.io = module.exports.io =  socket(server);
