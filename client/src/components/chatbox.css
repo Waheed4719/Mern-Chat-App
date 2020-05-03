@@ -1,0 +1,274 @@
+
+body{
+    background-color: ghostwhite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    height: auto;
+}
+h1{
+    color: darkslateblue;
+}
+.header{
+    width: 100%;
+    height: fit-content;
+    padding: 10px 15px;
+    background-color: #3D6CB9;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: Circular Std Black;
+    
+}
+.header> p{
+    font-size: 13px;
+    margin: 0px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.onlineStatus {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.header .onlineStatus p{
+    margin: 0px;
+    color: white;
+}
+
+.dot{
+    height: 8px;
+    width: 8px;
+    margin-left: 10px;
+    border-radius: 50px;
+    background-color: #FF9A4D;
+    box-shadow: 0px, 0px ,12px, #FF6868;
+}
+
+.chatroom{
+    width: 100% !important;
+    display:flex;
+    flex-flow: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+.Online{
+    border: none;
+    border-radius: 15px;
+    background-color:rgb(143, 62, 197);
+    display:flex;
+    min-width: 340px;
+    max-width: 100%;
+    height: fit-content;
+    padding: 20px;
+    flex-direction: column;
+    margin: 10px;
+    margin-top: 0px;
+}
+.Online .status{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+.Online p{
+    color: white;
+    margin:0px;
+    margin-left: 10px;
+    padding: 5px;
+}
+.Chatbox{
+    box-shadow: 0px 6px 12px #757B84;
+    width: 340px;
+    height: 600px;
+    border-radius: 15px;
+    background-color: white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+
+/*inside main chat message container*/
+.chatMsgContainer{
+    width: 100%;
+    height: 460px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    overflow-y: scroll;
+    display:flex;
+    flex-direction: column;
+    background-color: #FAFAF6;
+}
+.centerAlign p {
+    font-size: 11px;
+    margin: 10px 0px;
+}
+.leftAlign{
+    display:flex;
+    flex-direction: row;
+    font-size: 11px;
+    align-items: center;
+    margin-left: 10px;
+}
+.rightAlign{
+    display:flex;
+    flex-direction: row;
+    align-items: center ;
+    justify-content: flex-end ;
+    font-size: 11px;
+    
+    
+}
+.leftAlign p,.rightAlign p{
+    width: fit-content;
+    height: auto;
+    max-width: 60%;
+    background-color: #3D6CB9;
+    color: white;
+    padding: 5px 10px;
+    margin: 5px;
+    border: none;
+    word-break: break-all;
+    font-family: Open sans;
+    font-size: 11px;
+    text-align: justify;
+}
+.leftAlign p{
+    
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 10px;
+}
+.rightAlign p{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 10px;
+}
+.leftAlign img,.rightAlign img{
+    width: 25px;
+    height: 25px;
+}
+
+
+
+
+/*uploads bar*/
+.uploads{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 50px;
+    display:flex;
+    flex-direction: row;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: #3D6CB9;
+}
+.uploads div{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.uploads div img{
+    height: auto;
+}
+
+
+
+/*input layout bar*/
+.inputLayout{
+    position: absolute;
+    bottom: 50px;
+    right: 0;
+    left:0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    border-top: 1px solid #EFE8E8;
+    height: 50px;
+    padding: none;
+}
+.inputLayout > input{
+    display: flex;
+    flex: 4;
+    border: none;
+    padding-left: 20px;
+    font-size: 11px;
+    
+}
+.inputLayout > button{
+    display: block;
+    border: none;
+    background-color: #7CACFB;
+    font-family: Open sans;
+    color: white;
+    font-size: 11px;
+    flex: 1;
+}
+.inputLayout > button img{
+    width: 18px;
+    height:auto;
+}
+
+
+
+.logout{
+    display:block;
+    color: white;
+    margin: auto;
+    font-family: Circular Std Black;
+    line-height: 40px;
+    width: 175px;
+    border-radius: 6px;
+    border: none;
+    box-shadow: 0px 6px 12px #757B84;
+    background-color: #E84141;
+}
+.logout:hover{
+    color: black;
+}
+
+
+.roomInput{
+    border: 1px solid gainsboro;
+    padding: 5px 10px;
+    width: 300px;
+    height: 40px;
+    border-radius: 7px;
+    transition: all .5s ease-in-out;
+    margin-bottom: 20px;
+  
+}
+.roomInput:focus{
+    border: 1px solid dodgerblue;
+}
+
+.joinRoom{
+    display:block;
+    color: white;
+    margin: auto;
+    font-family: Circular Std Black;
+    letter-spacing: 1px;
+    
+    line-height: 40px;
+    width: 175px;
+    border: none;
+    box-shadow: 0px 6px 12px #757B84;
+    background-color: dodgerblue;
+}
+.joinRoom:hover{
+    color: lightblue;
+}

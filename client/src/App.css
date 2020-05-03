@@ -1,0 +1,11 @@
+.App {
+  text-align: center;
+}
+#root{
+  width: 100%;
+  min-height:100% !important;
+}
+body{
+  min-height: 100%;
+  margin: 0px !important;
+}

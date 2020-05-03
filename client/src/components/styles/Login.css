@@ -1,0 +1,82 @@
+.login {
+  text-align: center;
+}
+.login h1 {
+  color: darkslategray;
+}
+.login form {
+  width: fit-content;
+  margin: 100px auto;
+  margin-top: 40px;
+}
+.login form h1 {
+  color: darkslategray;
+  margin-bottom: 20px;
+}
+.login form div {
+  display: flex;
+  margin: 5px;
+  flex-direction: column;
+  max-width: 100%;
+}
+.login form div div {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
+.login form label {
+  margin-right: 15px;
+  width: 80px;
+  text-align: right;
+}
+.login form input {
+  border: 1px solid gainsboro;
+  padding: 5px 10px;
+  width: 300px;
+  height: 40px;
+  border-radius: 7px;
+  transition: all 0.5s ease-in-out;
+}
+.login form input:focus {
+  border: 1px solid dodgerblue;
+}
+.login form p {
+  visibility: hidden;
+  font-size: 12px;
+  color: red;
+  margin: auto;
+  margin-bottom: 5px;
+}
+.login form p:before {
+  content: "*";
+  color: red;
+}
+.login form small {
+  display: block;
+  text-align: center;
+  margin: 15px;
+}
+.login form button {
+  margin: auto;
+  display: inline-block;
+  border: none;
+  width: 100px;
+  height: 35px;
+  line-height: 35px;
+  color: white;
+  padding: 0px;
+  background-color: #1890ff;
+  transition: all 0.2s ease-in-out;
+}
+.login form button:hover {
+  color: white;
+  background-color: #58adfb;
+}
+@media only screen and (max-width: 600px) {
+  .login form input {
+    width: 260px !important;
+  }
+  .login form p {
+    margin-right: 10px;
+  }
+}
