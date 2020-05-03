@@ -33,9 +33,8 @@ function Chat() {
             {!auth.isAuthenticated && <Redirect to="/" />}
             <h1 style={{fontFamily:"pocket_monkregular",fontSize: "44px"}}>Welcome to Poke Chat</h1>
             <img src ={Pikachu} style={{height: "120px",width: "auto"}} alt="pikachu" />
-            <h2 style={{fontFamily:"pocket_monkregular",fontSize: "34px"}}>This is the Chat Page</h2>
             
-            <h3 style={{fontFamily:"pocket_monkregular"}}>Hello,<span style={{color: "#E84141"}}> {auth.user.name}</span></h3>
+            <h3 style={{fontFamily:"pocket_monkregular",fontSize:"24px"}}>Hello,<span style={{color: "#E84141"}}> {auth.user.name}</span></h3>
             <h2 style={{fontFamily:"pocket_monkregular"}}>Join a room to start chat</h2>
 
             <div><input className="roomInput" onChange={e=>setRoom(e.target.value)} placeholder='Room name'/></div>
