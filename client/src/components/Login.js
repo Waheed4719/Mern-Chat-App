@@ -4,9 +4,7 @@ import './styles/neomorphism.css'
 import {Link, useHistory, Redirect} from 'react-router-dom'
 import {login} from './../store/actions/authActions'
 import {useDispatch, useSelector} from 'react-redux'
-
-
-
+import { message } from 'antd'
 import google from './../assets/google-icon.svg'
 import linkedIn from './../assets/linkedin-icon.svg'
 import facebook from './../assets/facebook-icon.svg'
@@ -21,7 +19,7 @@ const dispatch = useDispatch()
 const auth = useSelector(state => state.auth)
 const history = useHistory();
 const [email, setEmail] = useState('')
-const [password, setPassword] = useState('')
+const [pass, setPass] = useState('')
 const [isStopped, setIsStopped] = useState(false)
 const [isPaused,setIsPaused] = useState(false)
 
@@ -31,11 +29,20 @@ const [isPaused,setIsPaused] = useState(false)
 
 function submitForm(e){
     e.preventDefault()
+    if(!email){
+        message.warning("Enter Email!")
+    }
+    else if(!pass){
+        message.warning("Enter Password!")
+    }
+    else{
+        const form = {email,pass}
+        setEmail('')
+        setPass('')
+        dispatch(login(form,history))
+
+    }
     
-    const pass = password
-    const form = {email,pass}
-    console.log(email,pass)
-    dispatch(login(form,history))
 
 }
  
@@ -57,7 +64,7 @@ function submitForm(e){
 
 return(
     <div className="container" >
-{auth && auth.isAuthenticated? <Redirect to="/Chat" /> :null}
+        {auth && auth.isAuthenticated? <Redirect to="/Chat" /> :null}
     <div className="mainCont log" >
 
         <div className="login outward" style={{flexDirection:'column'}}>
@@ -67,11 +74,11 @@ return(
 
             <div className="loginForm">
                     <div className="inputBox  inward">
-                        <input placeholder="Email Address"  onChange={(event)=>setEmail(event.target.value)} />
+                        <input placeholder="Email Address" value={email}  onChange={(event)=>setEmail(event.target.value)} />
                     </div>
                     
                     <div className="inputBox  inward">
-                        <input placeholder="Password" onChange={(event)=>setPassword(event.target.value)}/>
+                        <input placeholder="Password" value={pass} onChange={(event)=>setPass(event.target.value)}/>
                     </div>
                     <div className="forgot">
                         <a href="#">Forgot your password?</a>

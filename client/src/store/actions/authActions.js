@@ -53,6 +53,7 @@ export const register = (user, history) => dispatch => {
                 createdUser:user
             }
         })
+        message.success('Successfully Registered')
         history.push('/')
     })
     .catch(error=>{

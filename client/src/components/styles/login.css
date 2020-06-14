@@ -102,17 +102,21 @@ body,html{
     cursor: pointer;
 }
 .brands{
+    
     display: flex;
     justify-content: space-evenly;
     margin: 10px 0px;
+
 }
 
 .brands .outward{
+
     height: 45px;
     width: 45px;
     border-radius: 10px;
     margin: 10px 20px;
     cursor: pointer;
+
 }
 
 .brands img{
@@ -121,6 +125,7 @@ body,html{
 }
 
 .hero{
+
     max-width: 100%;
     font-family: Poppins;
     height: auto;
@@ -132,29 +137,37 @@ body,html{
 }
 
 .hero div, .hero svg{
+
     max-width: 100%;
     width: 300px !important;
     height:300px !important;
     
 }
 lottie-player {
+
     max-width: 100% ;
     max-height: auto;
     width: 400px;
     height: 400px
+
 }
 
 
 
 .hero h1{
+
     font-weight: 900;
     margin-bottom: 20px;
+
 }
 .hero h3{
+
     font-weight: 700;
+
 }
 
 .mainCont{
+
     display: flex;
     width: 100%;
     padding-top: 20px;
@@ -167,27 +180,51 @@ lottie-player {
 }
 
 .mainCont.log{
+
     flex-flow: wrap;
     flex-wrap: wrap-reverse;
+    justify-content: center;
+
+}
+
+.mainCont.log .inputBox.inward{
+
+    margin-bottom: 10px;
+
+}
+.mainCont.log .inputBox.outward{
+
+    margin-bottom: 10px;
+
 }
 
 .mainCont.reg{
+
     flex-flow: wrap;
+
 }
 
 .inputBox.outward.logoutBtn{
+
     width: 200px;
+
 }
 
 .mainCont.chat{
+
     justify-content: center;
     flex-direction: column;
+
 }
 
 .mainCont.chat .logoutBtn{
     
     background-color: rgba(255,0,0,0.5);
+
 }
+
 .mainCont.chat .logoutBtn a{
-color: white;
+
+    color: white;
+
 }

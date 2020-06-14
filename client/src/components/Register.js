@@ -16,7 +16,7 @@ import Lottie from 'react-lottie'
 function Register() {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [pass, setPass] = useState('')
     const history = useHistory();
     const dispatch = useDispatch();
     const auth = useSelector(state=>state.auth)
@@ -28,12 +28,24 @@ function Register() {
 
 function submitForm(e){
     e.preventDefault()
-    const pass = password
-    
-    const form = {name,email,pass}
-    console.log(form)
 
-    dispatch(register(form, history))
+    if(!name){
+        message.warning("Enter Username!")
+    }
+    else if(!email){
+        message.warning("Enter Email!")
+    }
+    else if(!pass){
+        message.warning("Enter Password!")
+    }
+    else{
+        const form = {name,email,pass}
+        console.log(form)
+    
+        dispatch(register(form, history))
+    }
+    
+    
 }
 
 
@@ -88,7 +100,7 @@ function submitForm(e){
                             </div>
                             
                             <div className="inputBox  inward">
-                                <input placeholder="Password" onChange={(event)=>setPassword(event.target.value)} />
+                                <input placeholder="Password" onChange={(event)=>setPass(event.target.value)} />
                             </div>
                           
                             <div className="inputBox  outward loginBtn" onClick={(e)=>submitForm(e)}>

@@ -18,7 +18,7 @@ function Chat() {
         if(auth && auth.isAuthenticated){
             setUser(auth.user)
         }
-    }, [])
+    }, [auth])
 
     useEffect(()=>{
     var input = document.getElementsByClassName("roomInput")[0];

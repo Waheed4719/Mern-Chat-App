@@ -102,6 +102,7 @@
     width: auto;
     display:flex;
     justify-content: center;
+    align-items: center !important;
     padding: 0px 10px
 }
 
@@ -111,7 +112,8 @@
     display:flex;
     padding-left: 20px;
     justify-content: flex-start;
-    margin-bottom:12px;
+    margin-bottom: 0px;
+    
 }
 .inputBox input{
     width: 100%;
