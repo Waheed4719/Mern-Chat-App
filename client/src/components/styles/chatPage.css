@@ -1,7 +1,6 @@
 .mainBox{
     height: 691px;
     width: 666px;
-    margin: 50px;
     padding: 10px;
     color: darkslategray;
     text-align: justify;
@@ -92,7 +91,7 @@
 .message p {
     font-size: 14px;
     font-weight: bold;
-    font-family: Quattrocento sans, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Quattrocento sans','Poppins','Open Sans', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     width: 100%;
 }
 
@@ -119,7 +118,7 @@
     background-color: transparent;
     border:none;
     outline: none;
-    font-family: Quattrocento sans, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Quattrocento sans','Poppins','Open Sans', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .submitBtn{
