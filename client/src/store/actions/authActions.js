@@ -5,7 +5,7 @@ import setAuthToken from './../../utils/setAuthToken'
 import { message } from 'antd'
 
 
-export const loginAction = (user,history) => dispatch => {
+export const login = (user,history) => dispatch => {
 
     Axios.post('/api/auth/login',user)
     .then(user=>{
@@ -42,7 +42,7 @@ export const loginAction = (user,history) => dispatch => {
 
 }
 
-export const registerAction = (user, history) => dispatch => {
+export const register = (user, history) => dispatch => {
     Axios.post('/api/auth/register',user)
     .then(user=>{
         console.log(user)

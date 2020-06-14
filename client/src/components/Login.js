@@ -1,8 +1,8 @@
 import React, {useState,useEffect} from 'react'
-import './styles/loginStyle.css'
+import './styles/login.css'
 import './styles/neomorphism.css'
 import {Link, useHistory, Redirect} from 'react-router-dom'
-import {loginAction} from './../store/actions/authActions'
+import {login} from './../store/actions/authActions'
 import {useDispatch, useSelector} from 'react-redux'
 
 
@@ -35,7 +35,7 @@ function submitForm(e){
     const pass = password
     const form = {email,pass}
     console.log(email,pass)
-    dispatch(loginAction(form,history))
+    dispatch(login(form,history))
 
 }
  
