@@ -1,5 +1,4 @@
 import React from 'react'
-import './chatbox.css'
 
 function PrivateChat() {
     return (

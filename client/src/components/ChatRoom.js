@@ -1,19 +1,19 @@
 import React,{useEffect,useState,useRef} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import queryString from 'query-string'
-import ChatInput from './Input'
 import Messages from './sub-components/Messages'
 import OnlineUsers from './sub-components/OnlineUsers'
 import io from 'socket.io-client'
-import './chatbox.css'
-import man from './../assets/2.svg'
-import video from './../assets/video.svg'
-import camera from './../assets/camera.svg'
-import clip from './../assets/icon.svg'
-import smileys from './../assets/smileys.svg'
-import PopInfo from './sub-components/PopInfo'
 import {logout} from './../store/actions/authActions'
 import { Redirect,Link, useHistory } from 'react-router-dom'
+import './styles/chatPage.css'
+import './styles/neomorphism.css'
+import Path1 from './../assets/Path 1.png'
+import Path2 from './../assets/Path 2.png'
+import rocket from './../assets/rocket.jpg'
+import redRocket from './../assets/redRocket.png'
+
+
 
 let socket;
 var Url = window.location.protocol + '//' + window.location.host + '/'
@@ -66,7 +66,7 @@ function ChatRoom({location}) {
     },[adminMsg])
 
  
-    function logOut(e){
+    function logOutEmit(e){
         e.preventDefault()
         socket.emit('logout')
         dispatch(logout(history))
@@ -96,10 +96,10 @@ function ChatRoom({location}) {
    var msg = []
    if(messages){
     msg = messages.map((msgs,index)=>(msgs.user===auth.user.name)?
-    <Messages key={index} message={msgs.text} className="rightAlign" image={man}/>: 
+    <Messages key={index} message={msgs.text} cls="rightAlign" image={redRocket}/>: 
     (msgs.user === 'admin')?
-    <Messages key={index} message={msgs.text} className="centerAlign" />
-    : <Messages key={index} message={msgs.text} className="leftAlign" image={man} />
+    <Messages key={index} message={msgs.text} cls="centerAlign" />
+    : <Messages key={index} message={msgs.text} cls="leftAlign" image={rocket} />
     )
    }
 
@@ -108,44 +108,59 @@ function ChatRoom({location}) {
     ou = <OnlineUsers onUsers={onlineUsers} />  
    }
 
-
     return (
-        <div className="">
+        <div className="container" style={{flexDirection: 'column'}}>
             {auth && auth.isAuthenticated?null:<Redirect to="/"/>}
-            <h1  style={{fontFamily:"pocket_monkregular",fontSize: "44px",color: "dodgerblue"}}>Room Chat</h1>
-        <div className="chatroom">
-            <div className="Online">
-            <OnlineUsers onUsers={onlineUsers} />
+    <div className="outward mainBox">
+        
+       <div className="platform">
+
+            <div className="title">
+                <div className="roomName">
+                <p>{room}</p>
+                <img src = {Path1}  alt="no image"/>
+                </div>
+              
+
+                               <div className="onlineStatus">
+                                     <p>Online: {(onlineUsers.length)-1}</p>
+                 <div className="dot"></div></div>
             </div>
-            <div className="Chatbox">
-                <div className="header">
-                    <p>Public Room: {room}</p>
-                    <div className="onlineStatus">
-                    <p>Online: {(onlineUsers.length)-1}</p>
-                    <div className="dot"></div>
-                    </div>
-                    
-                    </div>
-                    <div className="chatMsgContainer">
+
+            <div className="chatbox" >
+
                         {msg}
                         <div ref={messagesEndRef} />
-                    </div>
-                    <ChatInput onSubmit ={submitHandler} value={message} onChange = {inputHandler}/>
 
-                    <div className="uploads">
-                    <PopInfo image={camera} alt='image uploads'/>
-                    <PopInfo image={video}  alt='video uploads'/>
-                    <PopInfo image={clip}  alt='file uploads '/>
-                    <PopInfo image={smileys} alt='smileys'/>
-                    
-                    </div>
 
             </div>
 
-            
-        </div><Link  style={{fontFamily:"pocket_monkregular",letterSpacing:"2px",fontSize:"18px"}} to ='#' onClick={logOut} className="logout" >Logout</Link>
+        <div className="chatInput">
+            <div className="inputBox  inward">
+                <input placeholder="Type your message" value={message} onChange = {inputHandler}/>
+            </div>
+            <div className="submitBtn outward" onClick={submitHandler}>
+                <img src={Path2} />
+            </div>
         </div>
+
+
+       </div>
+
+        
+
+    </div>
+
+    <div className="inputBox  outward logoutBtn" onClick={logOutEmit} >
+                                <Link to="#">Logout</Link>
+                            </div>
+</div>
     )
+
+
+
+
+
 }
 
 export default ChatRoom

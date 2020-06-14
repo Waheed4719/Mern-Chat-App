@@ -3,13 +3,16 @@
 @import url('./fonts/webfontkit-20200427-053939/stylesheet.css');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 @import url('./fonts//CircularStd/stylesheet.css');
+@import url('https://fonts.googleapis.com/css2?family=Quattrocento+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap');
 body {
   margin: 0;
-  font-family: 'Open sans','pocket_monkregular', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family:  'Open sans','pocket_monkregular', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #ECF0F3 !important;
 }
 
 *{

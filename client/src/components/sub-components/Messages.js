@@ -1,26 +1,32 @@
 import React from 'react'
-
+import redRocket from './../../assets/redRocket.png'
+import rocket from './../../assets/rocket.jpg'
 function Messages(props) {
    
     return (
-        <div className={props.className} >
-        {(props.className === 'centerAlign')?
+        < >
+        {
+        ( props.cls === 'centerAlign' || props.cls==='leftAlign')?
         <>
-        <p>{props.message}</p>
-        </>
-        :
-        (props.className==='leftAlign')?
-        <>
-        <img src={props.image} alt="man" />
-        <p>{props.message}</p>
-        </>:
-        <>
-        <p>{props.message}</p>    
-        <img src={props.image} alt="woman" />
+        <div className="chatMessage left">
+                     <div className="avatar" style={{backgroundImage:"url("+rocket+")"}}></div>
+                   <div className="message outward">
+                      <p>{props.message}</p>
+                  </div>
+              </div>
+                </>:
+                <>
+                 <div className="chatMessage right">
+                     <div className="message outward">
+                         <p>{props.message}</p>
+                     </div>
+                     <div className="avatar" style={{backgroundImage:"url("+redRocket+")"}}>
+                     </div>
+                 </div>
         </>
         }
         
-        </div>
+        </>
     )
 }
 

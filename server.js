@@ -32,6 +32,7 @@ var curRoom
           usersInChat.findOne({user: user._id})
           .then(foundUser=>{
               if(foundUser){
+                console.log(foundUser)
                 usersInChat.findOneAndUpdate({user:user._id},{$set:{socketId:socket.id}},{new:true},function(err,user){
                   if(user){
                     console.log('updated user',user)
@@ -48,7 +49,7 @@ var curRoom
                
                
               }
-              socket.emit('message',{user:'admin', text: `Welcome to the room ${room},${user.name}`})
+              socket.emit('message',{user:'admin', text: `Welcome to the room ${room}, ${user.name}`})
               socket.broadcast.to(room).emit('message',{user:'admin', text: `${user.name} has just joined`,presence:1})
          
               socket.join(room)
