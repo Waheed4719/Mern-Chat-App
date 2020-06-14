@@ -187,12 +187,12 @@ lottie-player {
 
 }
 
-.mainCont.log .inputBox.inward{
+.mainCont.log .inputBox.inward, .mainCont.reg .inputBox.inward{
 
     margin-bottom: 10px;
 
 }
-.mainCont.log .inputBox.outward{
+.mainCont.log .inputBox.outward, .mainCont.reg .inputBox.outward{
 
     margin-bottom: 10px;
 
