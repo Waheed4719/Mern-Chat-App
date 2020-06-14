@@ -7,10 +7,6 @@ import {logout} from './../store/actions/authActions'
 import {socket} from './sub-components/Socket'
 
 
-
-// let socket;
-// var Url = window.location.protocol + '//' + window.location.host + '/'
-
 function Chat() {
     const auth = useSelector(state=>state.auth)
     const [user,setUser] = useState({})
@@ -25,7 +21,7 @@ function Chat() {
     }, [])
 
     useEffect(()=>{
-        var input = document.getElementsByClassName("roomInput")[0];
+    var input = document.getElementsByClassName("roomInput")[0];
     input.addEventListener("keyup", function(event) {
     if (event.keyCode === 13) {
     event.preventDefault();

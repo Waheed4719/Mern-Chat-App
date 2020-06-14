@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react'
-import './styles/login.css'
-import {register} from './../store/actions/authActions'
+// import './styles/login.css'
+import {registerAction} from './../store/actions/authActions'
 import Axios from 'axios'
 import jwt_decode from 'jwt-decode'
 import { Redirect, useHistory, Link } from 'react-router-dom'
@@ -34,7 +34,7 @@ function submitForm(e){
     const form = {name,email,pass}
     console.log(form)
 
-    dispatch(register(form, history))
+    dispatch(registerAction(form, history))
 }
 
 
