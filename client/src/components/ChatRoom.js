@@ -27,6 +27,7 @@ function ChatRoom({location}) {
     const [messages,setMessages] = useState([])
     const [message,setMessage] = useState('')
     const [adminMsg, setAdminMsg] = useState({})
+    const [image,setImage] = useState('')
     const messagesEndRef = useRef(null)
     const MsgInput = useRef(null)
     const submitMsg = useRef(null)
@@ -105,12 +106,13 @@ function ChatRoom({location}) {
                 const user = auth.user
                 user.room = room
                 socket.emit('sendMedia',{user,media})
+                setImage('')
             }
         }
     })
     .catch(error=>console.log(error))
-
-
+    setImage('')
+    
 
    }
 
@@ -208,7 +210,7 @@ function ChatRoom({location}) {
             <div className="submitBtn outward" ref={uploadBtn}  >
                 <UploadOutlined style={{fontSize: '18px'}} />
             </div>
-            <input type='file' single="true" className="fileInput"  ref={upload}  onChange={submitFileHandler}/>
+            <input type='file' value={image} single="true" className="fileInput"  ref={upload}  onChange={submitFileHandler}/>
             <div className="submitBtn outward" ref={submitMsg} onClick={submitHandler}>
                 <img src={Path2} />
             </div>
