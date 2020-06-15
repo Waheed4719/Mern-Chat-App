@@ -22,7 +22,7 @@
 }
 
 body{
-    font-family: 'Quattrocento sans','Poppins','Open sans', sans-serif;
+    font-family: 'Montserrat','Quattrocento sans','Poppins','Open sans', sans-serif;
     color: darkslategray;
 }
 
@@ -55,7 +55,7 @@ body,html{
     outline: none;
     width: 100%;
     font-size: 13px;
-    font-family: 'Quattrocento sans', 'Poppins', 'Open sans', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Montserrat','Quattrocento sans', 'Poppins', 'Open sans', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .inputBox input::placeholder{
     color: black;
