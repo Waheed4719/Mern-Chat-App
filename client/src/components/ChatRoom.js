@@ -14,11 +14,9 @@ import rocket from './../assets/rocket.jpg'
 import redRocket from './../assets/redRocket.png'
 import {socket} from './sub-components/Socket'
 import Axios from 'axios'
+import {UploadOutlined}from '@ant-design/icons'
 
 
-
-// let socket;
-// var Url = window.location.protocol + '//' + window.location.host + '/'
 var Url = window.location.protocol + '//' + window.location.host  
 function ChatRoom({location}) {
     
@@ -207,7 +205,7 @@ function ChatRoom({location}) {
                 <input placeholder="Type your message" value={message} ref={MsgInput} onChange = {inputHandler}/>
             </div>
             <div className="submitBtn outward" ref={uploadBtn}  >
-                <img src={Path2} />
+                <UploadOutlined style={{fontSize: '18px'}} />
             </div>
             <input type='file' single="true" className="fileInput"  ref={upload}  onChange={submitFileHandler}/>
             <div className="submitBtn outward" ref={submitMsg} onClick={submitHandler}>

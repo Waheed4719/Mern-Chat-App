@@ -75,6 +75,7 @@
     margin-bottom: 25px;
     
 }
+
 .message{
     max-width: 75% !important;
     height: auto;
@@ -95,7 +96,9 @@
     width: 100%;
 }
 
-
+.message img, .message video {
+    border-radius: 30px;
+}
 
 .chatInput{
     height: 50px;
@@ -103,7 +106,8 @@
     display:flex;
     justify-content: center;
     align-items: center !important;
-    padding: 0px 10px
+    padding: 10px 20px;
+    margin-top: 20px;
 }
 
 .inputBox{
