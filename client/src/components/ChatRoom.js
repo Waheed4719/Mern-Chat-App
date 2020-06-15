@@ -98,6 +98,7 @@ function ChatRoom({location}) {
     let media = null
     Axios.post('/api/auth/uploadfiles',form,config)
     .then(response=>{
+        console.log(response)
         if (response.data.success) {
             media = response.data.url
             if(media){
