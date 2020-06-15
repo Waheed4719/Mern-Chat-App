@@ -217,13 +217,13 @@ lottie-player {
 
 }
 
-.mainCont.chat .logoutBtn{
+.mainCont.chat .logoutBtn, .logoutBtn{
     
     background-color: rgba(255,0,0,0.5);
 
 }
 
-.mainCont.chat .logoutBtn a{
+.mainCont.chat .logoutBtn a, .logoutBtn a{
 
     color: white;
 

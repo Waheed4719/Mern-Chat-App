@@ -12,12 +12,14 @@ import Path1 from './../assets/Path 1.png'
 import Path2 from './../assets/Path 2.png'
 import rocket from './../assets/rocket.jpg'
 import redRocket from './../assets/redRocket.png'
+import {socket} from './sub-components/Socket'
+import Axios from 'axios'
 
 
 
-let socket;
-var Url = window.location.protocol + '//' + window.location.host + '/'
-
+// let socket;
+// var Url = window.location.protocol + '//' + window.location.host + '/'
+var Url = window.location.protocol + '//' + window.location.host  
 function ChatRoom({location}) {
     
     const auth = useSelector(state=>state.auth)
@@ -28,8 +30,14 @@ function ChatRoom({location}) {
     const [message,setMessage] = useState('')
     const [adminMsg, setAdminMsg] = useState({})
     const messagesEndRef = useRef(null)
+    const MsgInput = useRef(null)
+    const submitMsg = useRef(null)
     const dispatch = useDispatch()
     const history = useHistory()
+    const upload = useRef()
+    const uploadBtn = useRef()
+
+
 
     useEffect(() => {
 
@@ -37,8 +45,7 @@ function ChatRoom({location}) {
         const data = queryString.parse(location.search)
         setRoom(data.room)
         const user = auth.user
-        const room = data.room      
-        socket = io(Url)
+        const room = data.room  
         socket.emit('join',{user, room} )
 
         return()=>{
@@ -46,7 +53,7 @@ function ChatRoom({location}) {
             socket.off()
         }
      
-    }, [Url,location.search])
+    }, [location.search])
 
     useEffect(()=>{
         socket.on('message',data=>{
@@ -56,10 +63,15 @@ function ChatRoom({location}) {
             setAdminMsg(data)
         }
     })
+
+    socket.on('media',data=>{
+        setMessages(messages=>[...messages,data])
+        scrollToBottom()
+    } )
     },[])
 
     useEffect(()=>{
-        socket.emit('getUsers')
+        socket.emit('getUsers',room)
         socket.on('usersOnline',data=>{
             setOnlineUsers(data)
         })
@@ -75,6 +87,32 @@ function ChatRoom({location}) {
    const inputHandler = e =>{
        e.preventDefault()
        setMessage(e.target.value)
+   }
+
+   const submitFileHandler = e =>{
+    console.log('here')
+    console.log(e.target.files[0])
+    let form = new FormData()
+    form.append('file',e.target.files[0])
+    const config = {
+        header: { 'content-type': 'multipart/form-data' }
+    }
+    let media = null
+    Axios.post('/api/auth/uploadfiles',form,config)
+    .then(response=>{
+        if (response.data.success) {
+            media = response.data.url
+            if(media){
+                const user = auth.user
+                user.room = room
+                socket.emit('sendMedia',{user,media})
+            }
+        }
+    })
+    .catch(error=>console.log(error))
+
+
+
    }
 
    const submitHandler = e =>{
@@ -93,13 +131,44 @@ function ChatRoom({location}) {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
   }
 
+
+
+
+  useEffect(()=>{
+    if(MsgInput){
+        MsgInput.current.addEventListener("keyup", function(event) {
+            if (event.keyCode === 13) {
+            event.preventDefault();
+            if(submitMsg){
+                submitMsg.current.click();
+            }
+          }
+        });
+    }
+
+    if(upload && uploadBtn){
+        uploadBtn.current.addEventListener('click', (e)=>{
+            e.stopImmediatePropagation()
+            upload.current.click()
+        })
+
+
+        upload.current.addEventListener('change',()=>{
+            console.log(upload.current.value)
+        })
+    }
+  
+    })
+
+
+
    var msg = []
    if(messages){
     msg = messages.map((msgs,index)=>(msgs.user===auth.user.name)?
-    <Messages key={index} message={msgs.text} cls="rightAlign" image={redRocket}/>: 
+    <Messages key={index} message={msgs.text} media={msgs.url} cls="rightAlign" image={redRocket}/>: 
     (msgs.user === 'admin')?
-    <Messages key={index} message={msgs.text} cls="centerAlign" />
-    : <Messages key={index} message={msgs.text} cls="leftAlign" image={rocket} />
+    <Messages key={index} message={msgs.text} media={msgs.url} cls="centerAlign" />
+    : <Messages key={index} message={msgs.text} media={msgs.url} cls="leftAlign" image={rocket} />
     )
    }
 
@@ -120,12 +189,10 @@ function ChatRoom({location}) {
                 <p>{room}</p>
                 <img src = {Path1}  alt="no image"/>
                 </div>
-              
-
-                               <div className="onlineStatus">
-                                     <p>Online: {(onlineUsers.length)-1}</p>
-                 <div className="dot"></div></div>
-            </div>
+                    <div className="onlineStatus">
+                        <p>Online: {(onlineUsers.length)-1}</p>
+                        <div className="dot"></div></div>
+                </div>
 
             <div className="chatbox" >
 
@@ -137,9 +204,13 @@ function ChatRoom({location}) {
 
         <div className="chatInput">
             <div className="inputBox  inward">
-                <input placeholder="Type your message" value={message} onChange = {inputHandler}/>
+                <input placeholder="Type your message" value={message} ref={MsgInput} onChange = {inputHandler}/>
             </div>
-            <div className="submitBtn outward" onClick={submitHandler}>
+            <div className="submitBtn outward" ref={uploadBtn}  >
+                <img src={Path2} />
+            </div>
+            <input type='file' single="true" className="fileInput"  ref={upload}  onChange={submitFileHandler}/>
+            <div className="submitBtn outward" ref={submitMsg} onClick={submitHandler}>
                 <img src={Path2} />
             </div>
         </div>

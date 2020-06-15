@@ -18,6 +18,12 @@ function Chat() {
         if(auth && auth.isAuthenticated){
             setUser(auth.user)
         }
+        return()=>{
+            socket.emit('disconnect');
+            socket.off()
+        }
+     
+
     }, [auth])
 
     useEffect(()=>{

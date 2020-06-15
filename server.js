@@ -9,6 +9,7 @@ const http = require('http');
 const server = http.createServer(app);
 const path = require('path');
 const auth = require('./routes/auth');
+const multer = require('multer')
 
 
 global.io = module.exports.io =  socket(server);
@@ -17,6 +18,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use('/api/auth/',auth)
+app.use('/public', express.static('public'));
+
+
+
 
 const usersInChat = require('./models/Users_in_chat')
 
@@ -57,12 +62,21 @@ var curRoom
     
       })
 
-      socket.on('sendmessage',({user,message})=>{
+      
+
+      socket.on('sendmessage',({user,message})=>{        
         io.to(user.room).emit('message',{user:user.name, text:message})
       })
 
-      socket.on('getUsers',()=>{
-          usersInChat.find()
+
+      socket.on('sendMedia',({user,media})=>{
+        console.log(media)
+
+        io.to(user.room).emit('media',{user:user.name, url:media})
+      })
+
+      socket.on('getUsers',(room)=>{
+          usersInChat.find({room: room})
           .then(users=>{
             if(users){
                 socket.emit('usersOnline',users)

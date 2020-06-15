@@ -5,7 +5,7 @@ function OnlineUsers(props) {
     var ou = []
     const auth = useSelector(state=>state.auth)
     
-    var online = props.onUsers.filter(user=>user.user!=auth.user._id)
+    var online = props.onUsers.filter(user=>user.user!==auth.user._id)
     if(props.onUsers){
         ou = online.map((ousers,index)=><div key={index} className="status"><div className="dot"></div><p style={{cursor:'pointer',padding:'0px' }}>{ousers.name}</p></div>)
     }

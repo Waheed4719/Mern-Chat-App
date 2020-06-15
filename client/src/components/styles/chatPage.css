@@ -144,6 +144,11 @@
     box-shadow: 8px 8px 25px 0px rgba(68,112,255, 0.1),-15px -15px 25px 0px #fff ;
 }
 
+.fileInput{
+  display: none;
+}
+
+
 @media only screen and (max-width: 900px) {
     .message p{
         font-size: 14px ;

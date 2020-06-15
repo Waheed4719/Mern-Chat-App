@@ -74,7 +74,7 @@ return(
 
             <div className="loginForm">
                     <div className="inputBox  inward">
-                        <input placeholder="Email Address" value={email}  onChange={(event)=>setEmail(event.target.value)} />
+                        <input placeholder="Email Address" value={email}  onChange={(event)=>setEmail(event.target.value.trim())} />
                     </div>
                     
                     <div className="inputBox  inward">
