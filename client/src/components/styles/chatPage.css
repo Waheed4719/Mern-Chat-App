@@ -24,8 +24,51 @@
     padding-Right: 50px;
     margin-bottom: 10px;
     margin-top: 0px;
-
+    position: relative;
 }
+
+.title .popupMenu{  
+    display: none;
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    padding: 15px 20px;
+    height: auto;
+    width: 200px;
+    border-radius: 30px;
+    background-color: rgba(236,240,243, 1);
+    top: 160%;
+    left: 20px;
+    transition: all 0.4s ease-in-out;
+}
+.title .popupMenu.outward{
+    box-shadow: 15px 15px 25px 0px rgba(68,112,255, 0.05),-15px -15px 25px 0px rgba(255,255,255,0.5) ;
+}
+.title img{
+    cursor: pointer;
+}
+.title ul{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin: 0px;
+    align-self: flex-start;
+}
+
+.title li{
+    list-style: none;
+    font-weight: 400;
+    margin: 10px 0px;
+}
+.title .popupMenu p{
+    font-weight: 600;
+    align-self: center;
+    color: dodgerblue;
+    margin: 0px;
+    margin-bottom: 5px;
+    align-self: flex-start;
+}
+
 .title p{
     font-family: Poppins, sans-serif;
     font-weight: 900;

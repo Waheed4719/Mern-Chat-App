@@ -1,9 +1,11 @@
 import React from 'react'
 import redRocket from './../../assets/redRocket.png'
 import rocket from './../../assets/rocket.jpg'
+
+
+
 var Url = window.location.protocol + '//' + window.location.host
 function Messages({media,message,cls}) {
-  console.log(media,message)
     return (
         < >
         {

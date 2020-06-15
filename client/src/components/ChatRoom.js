@@ -2,8 +2,6 @@ import React,{useEffect,useState,useRef} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import queryString from 'query-string'
 import Messages from './sub-components/Messages'
-import OnlineUsers from './sub-components/OnlineUsers'
-import io from 'socket.io-client'
 import {logout} from './../store/actions/authActions'
 import { Redirect,Link, useHistory } from 'react-router-dom'
 import './styles/chatPage.css'
@@ -17,7 +15,7 @@ import Axios from 'axios'
 import {UploadOutlined}from '@ant-design/icons'
 
 
-var Url = window.location.protocol + '//' + window.location.host  
+// var Url = window.location.protocol + '//' + window.location.host  
 function ChatRoom({location}) {
     
     const auth = useSelector(state=>state.auth)
@@ -35,8 +33,8 @@ function ChatRoom({location}) {
     const history = useHistory()
     const upload = useRef()
     const uploadBtn = useRef()
-
-
+    const popupMenu = useRef()
+    const triggerPop = useRef()
 
     useEffect(() => {
 
@@ -133,8 +131,6 @@ function ChatRoom({location}) {
   }
 
 
-
-
   useEffect(()=>{
     if(MsgInput){
         MsgInput.current.addEventListener("keyup", function(event) {
@@ -152,14 +148,22 @@ function ChatRoom({location}) {
             e.stopImmediatePropagation()
             upload.current.click()
         })
+    }
 
-
-        upload.current.addEventListener('change',()=>{
-            console.log(upload.current.value)
+    if(triggerPop){
+        triggerPop.current.addEventListener('click',()=>{
+            if(popupMenu){
+                if(popupMenu.current.style.display==""){
+                    popupMenu.current.style.display="flex"
+                }
+                else{
+                    popupMenu.current.style.display=""
+                }
+            }
         })
     }
-  
-    })
+
+    },[])
 
 
 
@@ -175,58 +179,65 @@ function ChatRoom({location}) {
 
    var ou
    if(onlineUsers){
-    ou = <OnlineUsers onUsers={onlineUsers} />  
+    ou = onlineUsers.map((online,index)=>
+   <li key={index}>{online.name} {(online.name===auth.user.name)? <small>( me )</small>: null}</li>
+    ) 
    }
 
     return (
         <div className="container" style={{flexDirection: 'column'}}>
             {auth && auth.isAuthenticated?null:<Redirect to="/"/>}
-    <div className="outward mainBox">
-        
-       <div className="platform">
+   
+            <div className="outward mainBox">
+                
+                <div className="platform">
 
-            <div className="title">
-                <div className="roomName">
-                <p>{room}</p>
-                <img src = {Path1}  alt="no image"/>
+                    <div className="title">
+                            <div className="roomName">
+                            <p>{room}</p>
+                            <img src = {Path1}  alt="no image" ref={triggerPop}/>
+                            <div className="popupMenu outward" ref={popupMenu}>
+                                <p>Users Online</p>
+                                <hr style={{width:"100%",height:"2px",borderWidth:'4px',color:'gray',backgroundColor:'gainsboro'}}/>
+                                <ul>
+                                {ou}
+                                </ul>
+                            
+                            </div>
+                            </div>
+                                <div className="onlineStatus">
+                                    <p>Online: {(onlineUsers.length)}</p>
+                                    <div className="dot"></div>
+                                </div>
+                            </div>
+
+                    <div className="chatbox" >
+                                    {msg}
+                                    <div ref={messagesEndRef} />
+                        </div>
+
+                    <div className="chatInput">
+                        <div className="inputBox  inward">
+                            <input placeholder="Type your message" value={message} ref={MsgInput} onChange = {inputHandler}/>
+                        </div>
+                        <div className="submitBtn outward" ref={uploadBtn}  >
+                            <UploadOutlined style={{fontSize: '18px'}} />
+                        </div>
+                        <input type='file' value={image} single="true" className="fileInput"  ref={upload}  onChange={submitFileHandler}/>
+                        <div className="submitBtn outward" ref={submitMsg} onClick={submitHandler}>
+                            <img src={Path2} />
+                        </div>
+                    </div>
+
                 </div>
-                    <div className="onlineStatus">
-                        <p>Online: {(onlineUsers.length)-1}</p>
-                        <div className="dot"></div></div>
-                </div>
-
-            <div className="chatbox" >
-
-                        {msg}
-                        <div ref={messagesEndRef} />
-
 
             </div>
 
-        <div className="chatInput">
-            <div className="inputBox  inward">
-                <input placeholder="Type your message" value={message} ref={MsgInput} onChange = {inputHandler}/>
-            </div>
-            <div className="submitBtn outward" ref={uploadBtn}  >
-                <UploadOutlined style={{fontSize: '18px'}} />
-            </div>
-            <input type='file' value={image} single="true" className="fileInput"  ref={upload}  onChange={submitFileHandler}/>
-            <div className="submitBtn outward" ref={submitMsg} onClick={submitHandler}>
-                <img src={Path2} />
-            </div>
-        </div>
-
-
-       </div>
-
-        
-
+            <div className="inputBox  outward logoutBtn" onClick={logOutEmit} >
+        <Link to="#">Logout</Link>
     </div>
 
-    <div className="inputBox  outward logoutBtn" onClick={logOutEmit} >
-                                <Link to="#">Logout</Link>
-                            </div>
-</div>
+        </div>
     )
 
 
