@@ -29,6 +29,18 @@ export const login = (user,history) => dispatch => {
     .catch(error=>{
         if(error){
             console.log(error.response.data)
+            let newError = error.response.data
+            if(newError.email && !newError.pass){
+                message.error(newError.email)
+            }
+            else if(newError.pass && !newError.email){
+                message.error(newError.pass)
+            }
+            else{
+                message.error(newError.email)
+                message.error(newError.pass)
+            }
+            
             dispatch({
                 type: Types.USERS_ERROR,
                 payload: {

@@ -37,13 +37,9 @@ function submitForm(e){
     }
     else{
         const form = {email,pass}
-        setEmail('')
-        setPass('')
         dispatch(login(form,history))
-
     }
     
-
 }
  
     const buttonStyle = {

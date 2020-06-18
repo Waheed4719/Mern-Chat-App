@@ -1,7 +1,5 @@
 import React, {useState,useEffect} from 'react'
 import {register} from './../store/actions/authActions'
-import Axios from 'axios'
-import jwt_decode from 'jwt-decode'
 import { Redirect, useHistory, Link } from 'react-router-dom'
 import { message } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'

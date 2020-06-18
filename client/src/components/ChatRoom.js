@@ -15,9 +15,9 @@ import Axios from 'axios'
 import {UploadOutlined}from '@ant-design/icons'
 
 
-// var Url = window.location.protocol + '//' + window.location.host  
 function ChatRoom({location}) {
     
+    //Setting up Hooks
     const auth = useSelector(state=>state.auth)
     const [room,setRoom] = useState('')
     const [user,setUser] = useState({})
@@ -45,6 +45,20 @@ function ChatRoom({location}) {
         const room = data.room  
         socket.emit('join',{user, room} )
 
+        
+        var allMessages= localStorage.getItem('messages')
+        if(allMessages !== null){
+            let oldMessages = JSON.parse(allMessages)
+            if(oldMessages[oldMessages.length-1].room === data.room){
+                setMessages(JSON.parse(allMessages))
+            }
+            else{
+                localStorage.removeItem('messages')
+            }
+        }
+
+
+
         return()=>{
             socket.emit('disconnect');
             socket.off()
@@ -52,8 +66,11 @@ function ChatRoom({location}) {
      
     }, [location.search])
 
+
+
     useEffect(()=>{
-        socket.on('message',data=>{
+        socket.on('message',data=>{  
+        localWork(data)
         setMessages(messages=>[...messages,data])
         scrollToBottom()
         if(data.user==="admin"){
@@ -62,6 +79,8 @@ function ChatRoom({location}) {
     })
 
     socket.on('media',data=>{
+
+        localWork(data)
         setMessages(messages=>[...messages,data])
         scrollToBottom()
     } )
@@ -165,7 +184,30 @@ function ChatRoom({location}) {
 
     },[])
 
-
+    const localWork = (data) => {
+        let localMessages = localStorage.getItem('messages') 
+        var oldMessages = []
+        if(localMessages){
+            console.log("got")
+            oldMessages= JSON.parse(localMessages)
+            console.log('1', oldMessages)
+            if(data.user !== 'admin'){
+                oldMessages.push(data)
+                console.log('2', oldMessages)
+            }
+            
+            localStorage.setItem('messages',JSON.stringify(oldMessages))
+        }
+        else{
+            if(data.user !== 'admin'){
+                console.log("got 2")
+                oldMessages.push(data)
+            }
+        
+    
+            localStorage.setItem('messages',JSON.stringify(oldMessages))
+        }
+    }
 
    var msg = []
    if(messages){

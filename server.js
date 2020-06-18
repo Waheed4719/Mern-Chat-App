@@ -65,14 +65,14 @@ var curRoom
       
 
       socket.on('sendmessage',({user,message})=>{        
-        io.to(user.room).emit('message',{user:user.name, text:message})
+        io.to(user.room).emit('message',{user:user.name, text:message, room: user.room})
       })
 
 
       socket.on('sendMedia',({user,media})=>{
         console.log(media)
 
-        io.to(user.room).emit('media',{user:user.name, url:media})
+        io.to(user.room).emit('media',{user:user.name, url:media,room: user.room})
       })
 
       socket.on('getUsers',(room)=>{

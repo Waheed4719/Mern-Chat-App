@@ -46,3 +46,11 @@ let storage = multer.diskStorage({
         return res.json({ success: true, url: res.req.file.path, fileName: res.req.file.filename });
     });
   });
+
+
+
+
+
+//   router.post('/uploadBase',(req,res,next)=>{
+  
+//   })
