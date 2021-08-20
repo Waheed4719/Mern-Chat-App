@@ -44,6 +44,7 @@ function Chat() {
     function logOutEmit(e){
         e.preventDefault()
         socket.emit('logout',socket.id)
+        localStorage.removeItem("messages")
         dispatch(logout(history))
     }
 

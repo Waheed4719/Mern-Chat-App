@@ -9,7 +9,7 @@ function Messages({media,message,cls}) {
     return (
         < >
         {
-        ( cls === 'centerAlign' || cls==='leftAlign')?
+        (cls === 'left')?
         <>
         <div className="chatMessage left">
                      <div className="avatar" style={{backgroundImage:"url("+rocket+")"}}></div>

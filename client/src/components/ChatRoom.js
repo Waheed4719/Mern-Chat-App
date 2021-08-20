@@ -47,9 +47,9 @@ function ChatRoom({location}) {
 
         
         var allMessages= localStorage.getItem('messages')
-        if(allMessages !== null){
+        if(allMessages){
             let oldMessages = JSON.parse(allMessages)
-            if(oldMessages[oldMessages.length-1].room === data.room){
+            if(oldMessages[(oldMessages.length)-1].room === data.room){
                 setMessages(JSON.parse(allMessages))
             }
             else{
@@ -69,21 +69,22 @@ function ChatRoom({location}) {
 
 
     useEffect(()=>{
+        
         socket.on('message',data=>{  
-        localWork(data)
-        setMessages(messages=>[...messages,data])
-        scrollToBottom()
-        if(data.user==="admin"){
-            setAdminMsg(data)
-        }
+            localWork(data)
+            setMessages(messages=>[...messages,data])
+            scrollToBottom()
+            if(data.user==="admin"){
+                setAdminMsg(data)
+            }
     })
 
-    socket.on('media',data=>{
-
-        localWork(data)
-        setMessages(messages=>[...messages,data])
-        scrollToBottom()
-    } )
+        socket.on('media',data=>{
+            localWork(data)
+            setMessages(messages=>[...messages,data])
+            scrollToBottom()
+        })
+        
     },[])
 
     useEffect(()=>{
@@ -97,6 +98,7 @@ function ChatRoom({location}) {
     function logOutEmit(e){
         e.preventDefault()
         socket.emit('logout')
+        localStorage.removeItem("messages")
         dispatch(logout(history))
     }
 
@@ -212,10 +214,8 @@ function ChatRoom({location}) {
    var msg = []
    if(messages){
     msg = messages.map((msgs,index)=>(msgs.user===auth.user.name)?
-    <Messages key={index} message={msgs.text} media={msgs.url} cls="rightAlign" image={redRocket}/>: 
-    (msgs.user === 'admin')?
-    <Messages key={index} message={msgs.text} media={msgs.url} cls="centerAlign" />
-    : <Messages key={index} message={msgs.text} media={msgs.url} cls="leftAlign" image={rocket} />
+    <Messages key={index} message={msgs.text} media={msgs.url} cls="right" image={redRocket}/>: 
+    <Messages key={index} message={msgs.text} media={msgs.url} cls="left" image={rocket} />
     )
    }
 

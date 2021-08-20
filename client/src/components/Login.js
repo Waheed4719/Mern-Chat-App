@@ -102,7 +102,7 @@ return(
             </div>
         </div>
 
-        <div class="hero">
+        <div className="hero">
 
             <h1>Chat App</h1>
             <h3>Built using Mongo, Express, React, Node.JS and Socket.io</h3>
