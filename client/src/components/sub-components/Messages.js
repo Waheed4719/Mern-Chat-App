@@ -31,8 +31,8 @@ function Messages({media,message,cls}) {
                  <div className="chatMessage right">
                      <div className="message outward">
                         {message?<p>{message}</p>:null}
-
-                       {media && media.endsWith('.jpg' || '.svg' || '.png')?
+                        {console.log(media && (media.endsWith('.jpg')  || media.endsWith('.svg') || media.endsWith('.png')), media)}
+                       {media && (media.endsWith('.jpg')  || media.endsWith('.svg') || media.endsWith('.png'))?
                        <img src={ `${Url}/${media}`} width="100" height="100"/>:null}  
                        {media && media.endsWith('.mp4')?
                        <video src={ `${Url}/${media}`} width="200" height="200"  controls autoPlay/>

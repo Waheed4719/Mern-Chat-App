@@ -13,7 +13,9 @@ body{
   margin: 0px !important;
   height: auto;
 }
-
+a, button{
+  cursor: pointer;
+}
 
 
 
